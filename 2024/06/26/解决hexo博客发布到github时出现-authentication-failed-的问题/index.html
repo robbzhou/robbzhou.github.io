@@ -13,26 +13,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Robb Zhou">
   <meta name="keywords" content="">
   
     <meta name="description" content="解决hexo博客发布到github时出现 authentication failed 的问题用 hexo 发布博客到 Github 时，遇到了如下的错误 12remote: Invalid username or password.fatal: Authentication failed for &#x27;https:&#x2F;&#x2F;github.com&#x2F;xxxx&#x2F;xxxx.github.io.git&#x2F;&amp;#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决hexo博客发布到github时出现 authentication failed 的问题">
 <meta property="og:url" content="http://example.com/2024/06/26/%E8%A7%A3%E5%86%B3hexo%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83%E5%88%B0github%E6%97%B6%E5%87%BA%E7%8E%B0-authentication-failed-%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Robb">
 <meta property="og:description" content="解决hexo博客发布到github时出现 authentication failed 的问题用 hexo 发布博客到 Github 时，遇到了如下的错误 12remote: Invalid username or password.fatal: Authentication failed for &#x27;https:&#x2F;&#x2F;github.com&#x2F;xxxx&#x2F;xxxx.github.io.git&#x2F;&amp;#">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/pic1.png">
 <meta property="article:published_time" content="2024-06-26T07:48:08.000Z">
-<meta property="article:modified_time" content="2024-06-26T08:02:49.873Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2024-06-26T08:07:58.528Z">
+<meta property="article:author" content="Robb Zhou">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/pic1.png">
   
   
   
-  <title>解决hexo博客发布到github时出现 authentication failed 的问题 - Hexo</title>
+  <title>解决hexo博客发布到github时出现 authentication failed 的问题 - Robb</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -96,7 +96,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>Robb</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          343 字
+          317 字
         
       </span>
     
@@ -277,16 +277,16 @@
                 <h1 id="解决hexo博客发布到github时出现-authentication-failed-的问题"><a href="#解决hexo博客发布到github时出现-authentication-failed-的问题" class="headerlink" title="解决hexo博客发布到github时出现 authentication failed 的问题"></a>解决hexo博客发布到github时出现 authentication failed 的问题</h1><p>用 hexo 发布博客到 Github 时，遇到了如下的错误</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">remote: Invalid username or password.<br>fatal: Authentication failed <span class="hljs-keyword">for</span> <span class="hljs-string">&#x27;https://github.com/xxxx/xxxx.github.io.git/&#x27;</span><br></code></pre></td></tr></table></figure>
 <p>起因是 Github 已经不支持采用用户名、密码的方式从第三方应用中进行认证。 解决办法使用 “Personal access token”。</p>
-<p>登录你的 Github 账号，在右上角头像图标的下拉菜单中选择”Settings”, 再在左边的类别中选择 “Developer settings”。就可以看到 “Personal access tokens”。按”Generate new token”按钮选择生成一个新的token, 选择相关的权限。 用 hexo 进行发布博客，只需要选择”public_repo, repo:status, repo_deployment”这几项权限即可。*** 生成后记得复制github生成的token ***, 完成后的状态如下图:</p>
+<p>登录你的 Github 账号，在右上角头像图标的下拉菜单中选择”Settings”, 再在左边的类别中选择 “Developer settings”。就可以看到 “Personal access tokens”。按”Generate new token”按钮选择生成一个新的token, 选择相关的权限。 用 hexo 进行发布博客，只需要选择”public_repo, repo:status, repo_deployment”这几项权限即可。<strong>生成后记得复制github生成的token</strong>, 完成后的状态如下图:</p>
 <p><img src="/img/pic1.png" srcset="/img/loading.gif" lazyload><br>完成上述操作后，打开博客项目中的 _config.yml 文件，找到”deploy”配置项，改为如下的格式</p>
-<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">deploy:</span><br><span class="hljs-symbol">  type:</span> git<br><span class="hljs-symbol">  repo:</span> https:<span class="hljs-comment">//oauth2:&lt;your personal access token&gt;@github.com/xxxx/xxxx.github.io.git</span><br><span class="hljs-symbol">  branch:</span> master<br><span class="hljs-symbol">  token:</span> <span class="hljs-params">&lt;your personal access token&gt;</span><br><br></code></pre></td></tr></table></figure>
-<p>*** 用你真实的账号替换“xxxx”, 用上面在github中生成的 token 替换”“。***</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">deploy:</span><br>  <span class="hljs-attr">type:</span> <span class="hljs-string">git</span><br>  <span class="hljs-attr">repo:</span> <span class="hljs-string">https://oauth2:&lt;your</span> <span class="hljs-string">personal</span> <span class="hljs-string">access</span> <span class="hljs-string">token&gt;@github.com/xxxx/xxxx.github.io.git</span><br>  <span class="hljs-attr">branch:</span> <span class="hljs-string">master</span><br>  <span class="hljs-attr">token:</span> <span class="hljs-string">&lt;your</span> <span class="hljs-string">personal</span> <span class="hljs-string">access</span> <span class="hljs-string">token&gt;</span><br><br></code></pre></td></tr></table></figure>
+<p><strong>用你真实的账号替换“xxxx”, 用上面在github中生成的 token 替换”“。</strong></p>
 <p>保存后再执行 hexo -d 就可以完成发布了。</p>
 <h2 id="关联文件"><a href="#关联文件" class="headerlink" title="关联文件"></a>关联文件</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://www.mls-tech.info/hexo/blog-support-amp/">本站全面支持 AMP 技术</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.mls-tech.info/hexo/hexo-plugin-genertor-amp-error/">处理 ERROR Plugin load failed hexo-generator-amp</a></li>
-<li>[Hexo常用插件介绍] hexo-generator-amp(<a target="_blank" rel="noopener" href="https://www.mls-tech.info/hexo/hexo-plugin-generator-amp/">https://www.mls-tech.info/hexo/hexo-plugin-generator-amp/</a>)</li>
-<li>[Hexo常用插件介绍] hexo-symbols-count-time(<a target="_blank" rel="noopener" href="https://www.mls-tech.info/hexo/hexo-plugin-symbols-count-time/">https://www.mls-tech.info/hexo/hexo-plugin-symbols-count-time/</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://www.mls-tech.info/hexo/hexo-plugin-generator-amp/">Hexo常用插件介绍 hexo-generator-amp</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mls-tech.info/hexo/hexo-plugin-symbols-count-time/">Hexo常用插件介绍 hexo-symbols-count-time</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.mls-tech.info/hexo/hexo-set-friend-links/">在 Next 主题中添加友情链接</a></li>
 </ul>
 
@@ -313,7 +313,7 @@
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Robb Zhou</div>
         </div>
       
       
